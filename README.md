@@ -10,10 +10,6 @@ This code is provided on an "AS-IS” basis without warranty of any kind, either
     ```
     $ brew install node
     ```
-    * Install Grunt Globally
-    ```
-    $ npm install -g grunt-cli
-    ```
 2. Sauce Credentials
     * In the terminal export your Sauce Labs Credentials as environmental variables:
     ```
@@ -25,6 +21,10 @@ This code is provided on an "AS-IS” basis without warranty of any kind, either
 	```
 	$ npm install
 	```
+4. Test Targets
+    * Simulator app: GuineaPig-sim-debug.app.zip located in <project root>/resources
+    * Device app: GuineaPig-dev-debug.app.zip located in <project root>/resources
+    * App names and paths are defined in ```Gruntfile.js``` and ```helpers.js``` in the ```test``` folder.
 
 ### Running Tests
 

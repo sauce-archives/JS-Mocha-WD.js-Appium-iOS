@@ -1,17 +1,17 @@
 var makeSuite = require('./helpers').makeSuite;
 
-makeSuite('Test Suite 1', function() {
+makeSuite('Test Suite Comments', function() {
 
-  it('should compute a sum', function() {
-    driver
-      .elementByAccessibilityId('TextField1')
-      .sendKeys(12)
-      .elementByClassName('UIATextField')
-      .sendKeys(8)
-      .elementByAccessibilityId('ComputeSumButton')
-      .click()
-      .elementByClassName('UIAStaticText')
-        .should.eventually.equal(20);
-  });
+    it('enter comments, submit and read back correctly', function() {
+        return driver
+            .elementById('comments')
+            .sendKeys('I am a comment!')
+            .elementById('H1Text')
+            .click()
+            .elementById('submit')
+            .click()
+            .elementById('comments')
+            .getValue().should.eventually.equal('');
+    });
 
 });
