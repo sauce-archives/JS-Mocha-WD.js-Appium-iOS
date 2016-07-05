@@ -42,7 +42,7 @@ function beforeEachExample(done) {
         .init({
             name: this.currentTest.title,
             browserName: '',
-            appiumVersion: '1.5.0',
+            appiumVersion: '1.5.3',
             deviceName: process.env.deviceName,
             platformVersion: process.env.platformVersion,
             platformName: process.env.platformName,
