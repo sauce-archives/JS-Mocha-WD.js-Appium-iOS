@@ -1,5 +1,8 @@
 'use strict';
 
+var simAppFile = 'GuineaPig-sim-debug.app.zip';
+var devAppFile = 'GuineaPig-dev-debug.app.zip';
+
 module.exports = function (grunt) {
     // configure tasks
     grunt.initConfig({
@@ -45,16 +48,16 @@ module.exports = function (grunt) {
 
     grunt.registerTask('iPhone_6_Simulator', function(n) {
       grunt.option('platformName', 'iOS');
-      grunt.option('platformVersion', '8.4');
+      grunt.option('platformVersion', '9.2');
       grunt.option('deviceName', "iPhone 6");
-      grunt.option('app', 'https://s3.amazonaws.com/appium/TestApp8.4.app.zip');
+      grunt.option('app', 'sauce-storage:' + simAppFile);
     });
 
     grunt.registerTask('iPhone_6_Real_Device', function(n) {
       grunt.option('platformName', 'iOS');
       grunt.option('platformVersion', '8.4');
       grunt.option('deviceName', "iPhone 6 Device");
-      grunt.option('app', 'sauce-storage:TestApp-iphoneos.app.zip');
+      grunt.option('app', 'sauce-storage:' + devAppFile);
     });
 
     // register tasks
