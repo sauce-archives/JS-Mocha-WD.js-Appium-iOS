@@ -2,7 +2,6 @@ var wd = require('wd'),
     _ = require("lodash"),
     chai = require("chai"),
     chaiAsPromised = require("chai-as-promised"),
-    uploadToSauceStorage = require("./sauce-utils").uploadFileToSauceStorage,
     path = require("path");
 
 chai.use(chaiAsPromised);
@@ -14,24 +13,6 @@ wd.configureHttp({
     retryDelay: 15000,
     retries: 5
 });
-
-function beforeAll(done){
-    uploadToSauceStorage(path.resolve("./resources/GuineaPig-dev-debug.app.zip"))
-        .then( function(res) {
-            if (res) {
-                uploadToSauceStorage(path.resolve("./resources/GuineaPig-dev-debug.app.zip")).then( function(res2) {
-                    if (res2) {
-                        done();
-                    } else {
-                        process.exit(-1);
-                    }
-                });
-            } else {
-                console.error("Device app upload failed!")
-                process.exit(-1);
-            }
-        });
-}
 
 function beforeEachExample(done) {
     var username = process.env.SAUCE_USERNAME;
@@ -46,7 +27,7 @@ function beforeEachExample(done) {
             deviceName: process.env.deviceName,
             platformVersion: process.env.platformVersion,
             platformName: process.env.platformName,
-            app: process.env.app
+            app: "sauce-storage:" + process.env.app
         })
         .nodeify(done);
 };
@@ -65,7 +46,6 @@ function makeSuite(desc, cb) {
 
         this.timeout(240000);
 
-        before(beforeAll);
         beforeEach(beforeEachExample);
         cb();
         afterEach(afterEachExample);

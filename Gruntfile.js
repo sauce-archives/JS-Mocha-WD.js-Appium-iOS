@@ -6,6 +6,10 @@ var devAppFile = 'GuineaPig-dev-debug.app.zip';
 module.exports = function (grunt) {
     // configure tasks
     grunt.initConfig({
+        execute: {
+            src: ['upload_to_sauce_storage.js']
+        },
+
         mocha_parallel: {
             options: {
                 args: function(suiteName) {
@@ -31,7 +35,7 @@ module.exports = function (grunt) {
                 mocha: './node_modules/.bin/mocha'
             }
         },
-        
+
         parallel: {
             assets: {
                 options: {
@@ -43,6 +47,7 @@ module.exports = function (grunt) {
     });
 
     // load tasks
+    grunt.loadNpmTasks('grunt-execute');
     grunt.loadNpmTasks('grunt-mocha-parallel');
     grunt.loadNpmTasks('grunt-parallel');
 
@@ -51,6 +56,7 @@ module.exports = function (grunt) {
       grunt.option('platformVersion', '9.2');
       grunt.option('deviceName', "iPhone 6");
       grunt.option('app', 'sauce-storage:' + simAppFile);
+      process.env['appPath']= 'resources/' + simAppFile;
     });
 
     grunt.registerTask('iPhone_6_Real_Device', function(n) {
@@ -58,13 +64,14 @@ module.exports = function (grunt) {
       grunt.option('platformVersion', '8.4');
       grunt.option('deviceName', "iPhone 6 Device");
       grunt.option('app', 'sauce-storage:' + devAppFile);
+      process.env['appPath']= 'resources/' + devAppFile;
     });
 
     // register tasks
     grunt.registerTask('default', ['parallel']);
 
-    grunt.registerTask('run_iPhone_6_Simulator', ['iPhone_6_Simulator', 'mocha_parallel']);
-    grunt.registerTask('run_iPhone_6_Real_Device', ['iPhone_6_Real_Device', 'mocha_parallel']);
-    
+    grunt.registerTask('run_iPhone_6_Simulator', ['iPhone_6_Simulator', 'execute', 'mocha_parallel']);
+    grunt.registerTask('run_iPhone_6_Real_Device', ['iPhone_6_Real_Device', 'execute', 'mocha_parallel']);
+
 };
 
