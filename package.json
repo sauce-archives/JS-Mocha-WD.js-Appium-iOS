@@ -10,6 +10,7 @@
     "wd": "*",
     "chai-as-promised": "~5.2.0",
     "grunt": "0.4.5",
+    "grunt-execute": "*",
     "grunt-mocha-parallel": "^0.1.7",
     "grunt-parallel": "^0.4.1",
     "q": "~1.4.1",

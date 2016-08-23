@@ -2,8 +2,8 @@ var makeSuite = require('./helpers').makeSuite;
 
 makeSuite('Test Suite Comments', function() {
 
-    it('enter comments, submit and read back correctly', function() {
-        return driver
+    it('enter comments, submit and read back correctly', function(done) {
+        driver
             .elementById('comments')
             .sendKeys('I am a comment!')
             .elementById('H1Text')
@@ -11,7 +11,8 @@ makeSuite('Test Suite Comments', function() {
             .elementById('submit')
             .click()
             .elementById('comments')
-            .getValue().should.eventually.equal('');
+            .getValue().should.eventually.equal('')
+            .nodeify(done);
     });
 
 });
