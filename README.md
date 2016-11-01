@@ -17,9 +17,9 @@ This code is provided on an "AS-IS” basis without warranty of any kind, either
 	$ export SAUCE_ACCESS_KEY=<your Sauce Labs access key>
     ```
 3. Project Dependencies
-	* Install Node modules
-	```
-	$ npm install
+    * Install Node modules
+    ```
+    $ npm install
 	```
 4. Test Targets
     * Simulator app: GuineaPig-sim-debug.app.zip located in <project root>/resources
@@ -30,7 +30,7 @@ This code is provided on an "AS-IS” basis without warranty of any kind, either
 
 * Tests in Parallel:
 	```
-	$ grunt
+	$ npm test
 	```
 
 [Sauce Labs Dashboard](https://saucelabs.com/beta/dashboard/)
